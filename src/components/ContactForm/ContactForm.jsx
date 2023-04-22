@@ -1,6 +1,12 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
+import {
+  ErrorMessage,
+  Form,
+  StyledAddContactBtn,
+  StyledTextWrap,
+} from './ContactForm.styled';
 
 const ContactsSchema = Yup.object().shape({
   name: Yup.string()
@@ -9,7 +15,7 @@ const ContactsSchema = Yup.object().shape({
       'Invalid name'
     )
     .required(),
-  number: Yup.number().required('Required field!'),
+  number: Yup.number().required(),
 });
 
 export const ContactForm = ({ addContact, contacts }) => {
@@ -34,22 +40,28 @@ export const ContactForm = ({ addContact, contacts }) => {
     >
       <Form>
         <label htmlFor="">
-          Name
+          <StyledTextWrap>Name</StyledTextWrap>
+
           <Field
             name="name"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-          <ErrorMessage name="name" component="div" />
+        </label>
+        <ErrorMessage name="name" component="div" />
+        <label>
+          <StyledTextWrap>Number</StyledTextWrap>
+
           <Field
             type="tel"
             name="number"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-          <ErrorMessage name="number" component="div" />
         </label>
-        <button type="submit">Add contact</button>
+        <ErrorMessage name="number" component="div" />
+
+        <StyledAddContactBtn type="submit">Add contact</StyledAddContactBtn>
       </Form>
     </Formik>
   );

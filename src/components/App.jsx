@@ -1,9 +1,11 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Layout } from './Layout/Layout';
+
 import { ContactList } from './Contacts/Contacts-list';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
+import { StyledLayout } from './Layout/Layout.styled';
+import { StyledContactsTitle, StyledTitle } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -33,19 +35,19 @@ export class App extends Component {
     );
 
     return (
-      <Layout>
-        <h1>Phonebook</h1>
+      <StyledLayout>
+        <StyledTitle>Phonebook</StyledTitle>
         <ContactForm
           addContact={this.addContact}
           contacts={this.state.contacts}
         />
-        <h2>Contacts</h2>
+        <StyledContactsTitle>Contacts</StyledContactsTitle>
         <Filter filter={this.state.filter} searchContact={this.changeFilter} />
         <ContactList
           contacts={filtredContacts}
           deleteContact={this.deleteContact}
         />
-      </Layout>
+      </StyledLayout>
     );
   }
 }

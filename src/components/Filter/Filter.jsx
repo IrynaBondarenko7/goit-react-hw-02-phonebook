@@ -1,8 +1,11 @@
+import { StyledFiltrWrap } from './Filter.styled';
+
 export const Filter = ({ filter, searchContact }) => {
   return (
-    <label>
-      Find contacts by name
+    <StyledFiltrWrap>
+      <span>Find contacts by name</span>
+
       <input type="text" value={filter} onChange={searchContact} />
-    </label>
+    </StyledFiltrWrap>
   );
 };
