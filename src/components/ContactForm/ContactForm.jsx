@@ -26,7 +26,7 @@ export const ContactForm = ({ addContact, contacts }) => {
         number: '',
       }}
       validationSchema={ContactsSchema}
-      onSubmit={values => {
+      onSubmit={(values, { resetForm }) => {
         const contactsArray = contacts.filter(
           contact => contact.name === values.name
         );
@@ -36,6 +36,7 @@ export const ContactForm = ({ addContact, contacts }) => {
           return;
         }
         addContact({ ...values, id: nanoid() });
+        resetForm({ values: { name: '', number: '' } });
       }}
     >
       <Form>
